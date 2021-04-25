@@ -1,15 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import Nav from './components/Nav'
+import SplashScreen from './components/SplashScreen'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      <div className="left-side"></div>
+      <Nav />
+      <SplashScreen />
+      <div className="right-side"></div>
     </div>
   );
 }
