@@ -5,7 +5,7 @@ const SplashScreen = () => {
     return (
         <div className="splash">
             <div className="splash text">
-                Doggy Daycare -<br /> Brings the Bow-Wow in to your best friends life.
+                DOGGY DAYCARE -<br /> Brings the Bow-Wow in to your best friends life.
             </div>
             <div className="splash anim">
                 <img id="fence" src="./img/fence2.png" alt=""/>
