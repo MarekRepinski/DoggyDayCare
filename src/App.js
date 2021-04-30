@@ -32,21 +32,32 @@ function App() {
 
 // Main API comunication function
 async function getCustomers(url) {
-  if (!sessionStorage.dataLoaded) {
-    try {
-      let resp = await fetch(url, { headers : { "X-Master-Key": "$2b$10$IhrIs2ruVmYB9qDoesAcEOVzU7yA.6qvn/x0e7rjB1wZOzYESAW3C"} });
-      let data = await resp.json();
-      sessionStorage.setItem('data', JSON.stringify(data));
-      sessionStorage.setItem('dataLoaded', true);
+  try {
+    let resp = await fetch(url, { headers: { "X-Master-Key": "$2b$10$IhrIs2ruVmYB9qDoesAcEOVzU7yA.6qvn/x0e7rjB1wZOzYESAW3C" } });
+    let data = await resp.json();
+    sessionStorage.setItem('org', JSON.stringify(data));
+    data.record.sort((a, b) => {
 
-      return true;
-    }
-    catch (error) {
-      console.log(error);
-      return false;
-    }
-  } else {
+      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      // names must be equal
+      return 0;
+    });
+    sessionStorage.setItem('data', JSON.stringify(data));
+    sessionStorage.setItem('dataLoaded', true);
+
     return true;
+  }
+  catch (error) {
+    console.log(error);
+    return false;
   }
 }
 
